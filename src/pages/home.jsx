@@ -117,7 +117,7 @@ export default function Home() {
         </animated.div>
       </div>
       <div className="instructions">
-        <h2>最新の口コミ一覧</h2>
+        <h2>最新の口コミ一覧わあ</h2>
 
         
         {comments.map((comment) => (
