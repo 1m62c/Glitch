@@ -2,6 +2,7 @@
   <head>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <a-scene embedded arjs="patternRatio:0.80">
@@ -11,12 +12,43 @@
       >
         <a-image
           id="image-test"
-          width="1"
+          width="2"
           height="1"
-          position="0 0 0"
+          position="0 0 1"
           rotation="-90 0 0"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/image-test.png?v=1716092095577"
         ></a-image>
+        
+        <a-image
+          id="image-menu1"
+          class="image-menu visible"
+          width="2"
+          height="1"
+          position="2 0 2"
+          rotation="-90 0 0"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu1.jpg?v=1716124826160"
+        ></a-image>
+        <a-image
+          id="image-menu2"
+          class="image-menu"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu2.jpg?v=1716124827782"
+        ></a-image>
+        <a-image
+          id="image-menu3"
+          class="image-menu"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu3.jpg?v=1716124829182"
+        ></a-image>
+        <a-image
+          id="image-menu4"
+          class="image-menu"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu4.jpg?v=1716124826969"
+        ></a-image>
+        <a-image
+          id="image-menu5"
+          class="image-menu"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu5.jpg?v=1716124828449"
+        ></a-image>
+        
         <a-plane
           position="1.5 2 -2"
           rotation="-90 0 0"
@@ -35,5 +67,27 @@
       </a-marker>
       <a-entity camera cursor="fuse: false; rayOrigin: mouse;"></a-entity>
     </a-scene>
+    <script>
+      const imageTest = document.getElementById('image-test');
+
+      let isZoomed = false;
+
+      imageTest.addEventListener('click', () => {
+        if (isZoomed) {
+          imageTest.setAttribute('scale', '1 1 0');
+        } else {
+          imageTest.setAttribute('scale', '2 2 0');
+        }
+        isZoomed = !isZoomed;
+      });
+      
+      let current = 0;
+      const menus = document.querySelectorAll(".menu");
+      setInterval(() => {
+        menus[current].classList.remove("visible");
+        current = (current + 1) % menus.length;
+        menus[current].classList.add("visible");
+      }, 3000)
+    </script>
   </body>
 </html>
