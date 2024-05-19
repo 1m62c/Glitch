@@ -1,16 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    
-    <!-- This is the main template for the site, with index.jsx building the content and behavior -->
-    
-    <title>Hello React!</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
+    <a-scene embedded arjs="patternRatio:0.80">
+      <a-marker
+        type="pattern"
+        url="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/pattern-comment-ar_QR.patt?v=1715924488635"
+      >
+        <a-image
+          id="image-test"
+          width="1"
+          height="1"
+          position="0 0 0"
+          rotation="-90 0 0"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/image-test.png?v=1716092095577"
+        ></a-image>
+        <a-plane
+          position="1.5 2 -2"
+          rotation="-90 0 0"
+          width="4"
+          height="3"
+          color="#7BC8A4"
+          link="href: https://tabelog.com/kanagawa/A1407/A140701/14067650/"
+        ></a-plane>
+        <a-text
+          position="1.5 2.5 -2"
+          rotation="-90 0 0"
+          align="center"
+          value="Reviews\nTap to check the review site!"
+          color="white"
+        ></a-text>
+      </a-marker>
+      <a-entity camera cursor="fuse: false; rayOrigin: mouse;"></a-entity>
+    </a-scene>
   </body>
 </html>
