@@ -2,7 +2,7 @@
   <head>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a-scene embedded arjs="patternRatio:0.80">
@@ -10,84 +10,197 @@
         type="pattern"
         url="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/pattern-comment-ar_QR.patt?v=1715924488635"
       >
-        <a-image
-          id="image-test"
+        <!--         店内写真 -->
+        <!--         <a-image
+          id="image-store"
           width="2"
           height="1"
           position="0 0 1"
           rotation="-90 0 0"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/image-test.png?v=1716092095577"
-        ></a-image>
-        
+        ></a-image> -->
+
+        <!--         メニュー写真 -->
         <a-image
-          id="image-menu1"
-          class="image-menu visible"
+          id="image-menu"
           width="2"
           height="1"
-          position="2 0 2"
+          position="0 0 1.8"
           rotation="-90 0 0"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu1.jpg?v=1716124826160"
         ></a-image>
+
+        <!--         メニュー写真切り替えボタン -->
+        <a-cone
+          id="next"
+          color="yellow"
+          height="0.5"
+          radius-bottom="0.2"
+          position="0.8 0 0.75"
+          rotation="0 0 -90"
+        ></a-cone>
+        <a-cone
+          id="prev"
+          color="yellow"
+          height="0.5"
+          radius-bottom="0.2"
+          position="-0.8 0 0.75"
+          rotation="0 0 90"
+        ></a-cone>
+
+        <!--         翻訳ボタン -->
+        <a-cylinder
+          segments-radial="8"
+          radius="0.5"
+          height="0.2"
+          position="0 0 0"
+        ></a-cylinder>
         <a-image
-          id="image-menu2"
-          class="image-menu"
-          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu2.jpg?v=1716124827782"
+          id="trans"
+          rotation="-90 0 0"
+          position="0 0.3 0"
+          height="0.65"
+          width="0.65"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716815027953"
         ></a-image>
-        <a-image
-          id="image-menu3"
-          class="image-menu"
-          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu3.jpg?v=1716124829182"
-        ></a-image>
-        <a-image
-          id="image-menu4"
-          class="image-menu"
-          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu4.jpg?v=1716124826969"
-        ></a-image>
-        <a-image
-          id="image-menu5"
-          class="image-menu"
-          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu5.jpg?v=1716124828449"
-        ></a-image>
-        
+
+        <!--         口コミサイト -->
         <a-plane
-          position="1.5 2 -2"
+          position="2.2 0 -2.2"
           rotation="-90 0 0"
-          width="4"
-          height="3"
-          color="#7BC8A4"
-          link="href: https://tabelog.com/kanagawa/A1407/A140701/14067650/"
+          width="3"
+          height="2"
+          color="orange"
+          link="href: https://tabelog.com/kanagawa/A1407/A140701/14067650/dtlrvwlst/"
         ></a-plane>
-        <a-text
-          position="1.5 2.5 -2"
+        <a-image
+          id="reviews"
           rotation="-90 0 0"
-          align="center"
-          value="Reviews\nTap to check the review site!"
-          color="white"
-        ></a-text>
+          position="2.2 0.3 -2.2"
+          height="1.5"
+          width="2.5"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/Reviews_ja.png?v=1716387425839"
+        ></a-image>
+
+        <!--         店舗情報 -->
+        <a-plane
+          position="-2.2 0 -2.2"
+          rotation="-90 0 0"
+          width="3"
+          height="2"
+          color="lightblue"
+        ></a-plane>
+        <a-image
+          id="info"
+          position="-2.2 0.3 -2.2"
+          rotation="-90 0 0"
+          height="1.5"
+          width="2.5"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/info_ja.png?v=1716694449284"
+        ></a-image>
       </a-marker>
       <a-entity camera cursor="fuse: false; rayOrigin: mouse;"></a-entity>
     </a-scene>
-    <script>
-      const imageTest = document.getElementById('image-test');
 
+    <script>
+      // 店内写真拡大
+      //       AFRAME.registerComponent("image-zoom", {
+      //         init: function () {
+      //           var el = this.el;
+      //           el.addEventListener("click", function () {
+      //             var currentScale = el.getAttribute("scale");
+      //             console.log("Current scale:", currentScale);
+
+      //             if (currentScale.x === 1) {
+      //               console.log("Zooming in");
+      //               el.setAttribute("scale", { x: 1.5, y: 1.5, z: 1.5 });
+      //             } else {
+      //               console.log("Zooming out");
+      //               el.setAttribute("scale", { x: 1, y: 1, z: 1 });
+      //             }
+      //           });
+      //         },
+      //       });
+
+      //       document.querySelector("#image-store").setAttribute("image-zoom", "");
+
+      // 翻訳
+      const reviews = document.getElementById("reviews");
+      const info = document.getElementById("info");
+      const transButton = document.getElementById("trans");
+
+      let isJapanese = true;
+
+      transButton.addEventListener("click", () => {
+        if (isJapanese) {
+          reviews.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/Reviews.png?v=1716388552116"
+          );
+          info.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/info.png?v=1716694440643"
+          );
+          transButton.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_ja.png?v=1716815024450"
+          );
+        } else {
+          reviews.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/Reviews_ja.png?v=1716387425839"
+          );
+          info.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/info_ja.png?v=1716694449284"
+          );
+          transButton.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716815027953"
+          );
+        }
+        isJapanese = !isJapanese;
+      });
+
+      // メニュー写真切り替え
+      const imageNext = document.getElementById("next");
+      const imagePrev = document.getElementById("prev");
+      const imageNow = document.getElementById("image-menu");
+      const imageMenuSrc = [
+        "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu1.jpg?v=1716124826160",
+        "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu2.jpg?v=1716124827782",
+        "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu3.jpg?v=1716124829182",
+        "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu4.jpg?v=1716124826969",
+        "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu5.jpg?v=1716124828449",
+      ];
+
+      let current = 0;
+      function changeImage(num) {
+        if (current + num >= 0 && current + num < imageMenuSrc.length) {
+          current += num;
+          imageNow.setAttribute("src", imageMenuSrc[current]);
+        }
+      }
+
+      imageNext.addEventListener("click", () => {
+        changeImage(1);
+      });
+
+      imagePrev.addEventListener("click", () => {
+        changeImage(-1);
+      });
+
+      // メニュー写真拡大
       let isZoomed = false;
 
-      imageTest.addEventListener('click', () => {
+      imageNow.addEventListener("click", () => {
         if (isZoomed) {
-          imageTest.setAttribute('scale', '1 1 0');
+          imageTest.setAttribute("width", "2" "height", "1");
         } else {
-          imageTest.setAttribute('scale', '2 2 0');
+          imageTest.setAttribute("width", "3.5" "height", "2.5");
         }
         isZoomed = !isZoomed;
       });
-      
-      let current = 0;
-      const menus = document.querySelectorAll(".menu");
-      setInterval(() => {
-        menus[current].classList.remove("visible");
-        current = (current + 1) % menus.length;
-        menus[current].classList.add("visible");
-      }, 3000)
     </script>
   </body>
 </html>
