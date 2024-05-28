@@ -15,7 +15,7 @@
           id="image-store"
           width="2"
           height="1"
-          position="0 0 1"
+          position="0 0 3"
           rotation="-90 0 0"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/image-test.png?v=1716092095577"
         ></a-image> -->
@@ -25,26 +25,41 @@
           id="image-menu"
           width="2"
           height="1"
-          position="0 0 1.8"
+          position="0 0.3 1.4"
           rotation="-90 0 0"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/menu1.jpg?v=1716124826160"
         ></a-image>
+        <a-image
+          id="recommend"
+          width="1.2"
+          height="0.5"
+          position="0 0.25 2.2"
+          rotation="-90 0 0"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/recommended_ja.png?v=1716856893070"
+        ></a-image>
+        <a-plane
+          position="0 0 1.7"
+          rotation="-90 0 0"
+          width="2.5"
+          height="1.8"
+          color="lightgreen"
+        ></a-plane>
 
         <!--         メニュー写真切り替えボタン -->
         <a-cone
           id="next"
           color="yellow"
-          height="0.5"
-          radius-bottom="0.2"
-          position="0.8 0 0.75"
+          height="0.4"
+          radius-bottom="0.18"
+          position="0.5 0 0.4"
           rotation="0 0 -90"
         ></a-cone>
         <a-cone
           id="prev"
           color="yellow"
-          height="0.5"
-          radius-bottom="0.2"
-          position="-0.8 0 0.75"
+          height="0.4"
+          radius-bottom="0.18"
+          position="-0.5 0 0.4"
           rotation="0 0 90"
         ></a-cone>
 
@@ -53,49 +68,50 @@
           segments-radial="8"
           radius="0.5"
           height="0.2"
-          position="0 0 0"
+          position="0 0 -0.3"
+          color="lightpink"
         ></a-cylinder>
         <a-image
           id="trans"
           rotation="-90 0 0"
-          position="0 0.3 0"
+          position="0 0.35 -0.3"
           height="0.65"
           width="0.65"
-          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716815027953"
+          src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716899270285"
         ></a-image>
 
         <!--         口コミサイト -->
         <a-plane
-          position="2.2 0 -2.2"
+          position="1.7 0 -1.7"
           rotation="-90 0 0"
-          width="3"
-          height="2"
+          width="2.5"
+          height="1.5"
           color="orange"
           link="href: https://tabelog.com/kanagawa/A1407/A140701/14067650/dtlrvwlst/"
         ></a-plane>
         <a-image
           id="reviews"
           rotation="-90 0 0"
-          position="2.2 0.3 -2.2"
-          height="1.5"
-          width="2.5"
+          position="1.7 0.3 -1.7"
+          height="1"
+          width="2"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/Reviews_ja.png?v=1716387425839"
         ></a-image>
 
         <!--         店舗情報 -->
         <a-plane
-          position="-2.2 0 -2.2"
+          position="-1.7 0 -1.7"
           rotation="-90 0 0"
-          width="3"
-          height="2"
+          width="2.5"
+          height="1.5"
           color="lightblue"
         ></a-plane>
         <a-image
           id="info"
-          position="-2.2 0.3 -2.2"
+          position="-1.7 0.3 -1.7"
           rotation="-90 0 0"
-          height="1.5"
-          width="2.5"
+          height="1"
+          width="2"
           src="https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/info_ja.png?v=1716694449284"
         ></a-image>
       </a-marker>
@@ -103,6 +119,8 @@
     </a-scene>
 
     <script>
+      // document.addEventListener("DOMContentLoaded", function() {
+
       // 店内写真拡大
       //       AFRAME.registerComponent("image-zoom", {
       //         init: function () {
@@ -128,6 +146,7 @@
       const reviews = document.getElementById("reviews");
       const info = document.getElementById("info");
       const transButton = document.getElementById("trans");
+      const recommend = document.getElementById("recommend");
 
       let isJapanese = true;
 
@@ -143,7 +162,11 @@
           );
           transButton.setAttribute(
             "src",
-            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_ja.png?v=1716815024450"
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_ja.png?v=1716899274052"
+          );
+          recommend.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/recommend_en.png?v=1716856890705"
           );
         } else {
           reviews.setAttribute(
@@ -156,7 +179,11 @@
           );
           transButton.setAttribute(
             "src",
-            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716815027953"
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/translate_en.png?v=1716899270285"
+          );
+          recommend.setAttribute(
+            "src",
+            "https://cdn.glitch.global/6cf5a9e4-9c38-48a4-801d-55842977a64a/recommended_ja.png?v=1716856893070"
           );
         }
         isJapanese = !isJapanese;
@@ -191,16 +218,19 @@
       });
 
       // メニュー写真拡大
-      let isZoomed = false;
-
-      imageNow.addEventListener("click", () => {
-        if (isZoomed) {
-          imageTest.setAttribute("width", "2" "height", "1");
-        } else {
-          imageTest.setAttribute("width", "3.5" "height", "2.5");
-        }
-        isZoomed = !isZoomed;
-      });
+      // let isZoomed = false;
+      // const imageMenu = document.getElementById("image-menu");
+      //       imageMenu.addEventListener("click", () => {
+      //         if (isZoomed) {
+      //           imageMenu.setAttribute("width", "2");
+      //           imageMenu.setAttribute("height", "1");
+      //         } else {
+      //           imageMenu.setAttribute("width", "3.5");
+      //           imageMenu.setAttribute("height", "2.5");
+      //         }
+      //         isZoomed = !isZoomed;
+      //       });
+      // });
     </script>
   </body>
 </html>
